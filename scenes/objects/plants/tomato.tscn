@@ -1,0 +1,42 @@
+[gd_scene load_steps=11 format=3 uid="uid://cysui6elsohof"]
+
+[ext_resource type="Script" path="res://scenes/objects/plants/tomato.gd" id="1_djr3k"]
+[ext_resource type="Texture2D" uid="uid://srucqhsx35qv" path="res://assets/game/objects/basic_plants.png" id="1_x4jha"]
+[ext_resource type="PackedScene" uid="uid://i556swl7m4bd" path="res://scenes/objects/plants/watering_particles.tscn" id="2_1416n"]
+[ext_resource type="PackedScene" uid="uid://duahxukxrcurd" path="res://scenes/objects/plants/flowering_particles.tscn" id="3_5j8qu"]
+[ext_resource type="PackedScene" uid="uid://po3fd3hkwdcn" path="res://scenes/objects/plants/growth_cycle_component.tscn" id="4_5x4tf"]
+[ext_resource type="PackedScene" uid="uid://s5rugp5xfu5c" path="res://scenes/components/hurt_component.tscn" id="5_xy1x8"]
+[ext_resource type="PackedScene" uid="uid://cwbfu0pyxr6ox" path="res://scenes/components/save_data_component.tscn" id="7_yqs0k"]
+[ext_resource type="Resource" uid="uid://c4gm534o2aetd" path="res://resources/scene_data_resource.tres" id="8_28dxi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35paa"]
+atlas = ExtResource("1_x4jha")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_atcuk"]
+size = Vector2(20, 6)
+
+[node name="Tomato" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_djr3k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = SubResource("AtlasTexture_35paa")
+hframes = 6
+vframes = 2
+frame = 7
+
+[node name="WateringParticles" parent="." instance=ExtResource("2_1416n")]
+
+[node name="FloweringParticles" parent="." instance=ExtResource("3_5j8qu")]
+
+[node name="GrowthCycleComponent" parent="." instance=ExtResource("4_5x4tf")]
+
+[node name="HurtComponent" parent="." instance=ExtResource("5_xy1x8")]
+tool = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
+shape = SubResource("RectangleShape2D_atcuk")
+
+[node name="SaveDataComponent" parent="." instance=ExtResource("7_yqs0k")]
+save_data_resource = ExtResource("8_28dxi")

@@ -1,0 +1,14 @@
+~ start
+
+Luna: [[Hi|Hello|Howdy]], nice to meet you.
+Luna: Welcome to your new farm.
+Luna: As you can see the cows and chickens are hungry.
+Luna: You need to grow some crops to feed them.
+Luna: Here are some seeds to grow some crops.
+- Take crop seeds
+	Romeu: Yeah, I can grow crops.
+	do GameDialogueManager.action_give_crop_seeds()
+- No, I don't want them
+	Romeu: I'm not ready to grow my farm yet.
+
+=> END

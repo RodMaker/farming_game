@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://6wlcdn2nl2p"]
+
+[ext_resource type="AudioStream" uid="uid://cfdqwmp3fh0yx" path="res://assets/audio/sfx/cow-moo.ogg" id="1_vimme"]
+
+[node name="CowMooSFX" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_vimme")
+bus = &"Sfx"

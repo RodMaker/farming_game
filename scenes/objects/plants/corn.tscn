@@ -1,0 +1,44 @@
+[gd_scene load_steps=11 format=3 uid="uid://drdroj3hcw22y"]
+
+[ext_resource type="Texture2D" uid="uid://srucqhsx35qv" path="res://assets/game/objects/basic_plants.png" id="1_1qog5"]
+[ext_resource type="Script" path="res://scenes/objects/plants/corn.gd" id="1_27hol"]
+[ext_resource type="PackedScene" uid="uid://i556swl7m4bd" path="res://scenes/objects/plants/watering_particles.tscn" id="2_10ffe"]
+[ext_resource type="PackedScene" uid="uid://s5rugp5xfu5c" path="res://scenes/components/hurt_component.tscn" id="2_s8gnc"]
+[ext_resource type="PackedScene" uid="uid://duahxukxrcurd" path="res://scenes/objects/plants/flowering_particles.tscn" id="3_sqeu4"]
+[ext_resource type="PackedScene" uid="uid://po3fd3hkwdcn" path="res://scenes/objects/plants/growth_cycle_component.tscn" id="4_8ghsa"]
+[ext_resource type="PackedScene" uid="uid://cwbfu0pyxr6ox" path="res://scenes/components/save_data_component.tscn" id="7_u4gdc"]
+[ext_resource type="Resource" uid="uid://c4gm534o2aetd" path="res://resources/scene_data_resource.tres" id="8_eg6h8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ersg"]
+atlas = ExtResource("1_1qog5")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_801oc"]
+size = Vector2(13, 8)
+
+[node name="Corn" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_27hol")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = SubResource("AtlasTexture_5ersg")
+hframes = 6
+vframes = 2
+frame = 1
+
+[node name="WateringParticles" parent="." instance=ExtResource("2_10ffe")]
+
+[node name="FloweringParticles" parent="." instance=ExtResource("3_sqeu4")]
+
+[node name="GrowthCycleComponent" parent="." instance=ExtResource("4_8ghsa")]
+
+[node name="HurtComponent" parent="." instance=ExtResource("2_s8gnc")]
+position = Vector2(0, -4)
+tool = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
+position = Vector2(-0.5, 3)
+shape = SubResource("RectangleShape2D_801oc")
+
+[node name="SaveDataComponent" parent="." instance=ExtResource("7_u4gdc")]
+save_data_resource = ExtResource("8_eg6h8")
